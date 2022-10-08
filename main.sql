@@ -1,4 +1,7 @@
-CREATE TABLE persons
+CREATE DATABASE IF NOT EXISTS test;
+DROP TABLE IF EXISTS test.persons;
+DROP PROCEDURE IF EXISTS test.generate_data;
+CREATE TABLE test.persons
 (
     id         int          NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
@@ -9,7 +12,7 @@ CREATE TABLE persons
 );
 
 DELIMITER $$
-CREATE PROCEDURE generate_data()
+CREATE PROCEDURE test.generate_data()
 BEGIN
     DECLARE i INT DEFAULT 0;
     WHILE i < 100
@@ -25,4 +28,4 @@ BEGIN
 END$$
 DELIMITER ;
 
-CALL generate_data();
+CALL test.generate_data();
